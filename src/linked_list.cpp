@@ -8,8 +8,20 @@ namespace assignment {
     LinkedList::Clear();
   }
 
-  void LinkedList::Add(int value) {
-    // Write your code here ...
+  void LinkedList::Add(int value)
+  {
+    Node* addNode = new Node(value);
+    if (front_ == nullptr)
+    {
+      front_ = addNode;
+      back_ = addNode;
+    }
+    else
+    {
+      back_->next = addNode;
+      back_ = addNode;
+    }
+    size_++;
   }
 
   bool LinkedList::Insert(int index, int value) {
