@@ -1,6 +1,5 @@
 #include "assignment/linked_list.hpp"
 
-class Asap;
 namespace assignment {
 
   LinkedList::~LinkedList() {
@@ -105,7 +104,7 @@ namespace assignment {
 
   void LinkedList::Clear() {
     Node* current = front_;
-    Node* del = front_;
+    Node* del;
     for (int i = 0;i < size_; i++)
     {
       del = current;
@@ -134,12 +133,27 @@ namespace assignment {
   }
 
   std::optional<int> LinkedList::IndexOf(int value) const {
-    // Write your code here ...
+    Node* current = front_;
+    for (int i = 0; i < size_; i++)
+    {
+      if (current->value == value) {
+        return i;
+      }
+      current = current->next;
+    }
     return std::nullopt;
   }
 
   bool LinkedList::Contains(int value) const {
-
+    Node* current = front_;
+    for (int i = 0; i < size_; i++)
+    {
+      if (current->value == value)
+      {
+        return true;
+      }
+      current = current->next;
+    }
     return false;
   }
 
