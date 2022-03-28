@@ -70,12 +70,19 @@ namespace assignment {
   }
 
   bool DynamicArray::Set(int index, int new_value) {
-    // Write your code here ...
+    for (int i = 0; i < size_; i++)
+    {
+      if (i == index)
+      {
+        data_[i] = new_value;
+        return true;
+      }
+    }
     return false;
   }
 
   std::optional<int> DynamicArray::Remove(int index) {
-    // Write your code here ...
+
     return std::nullopt;
   }
 
