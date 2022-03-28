@@ -101,7 +101,7 @@ namespace assignment {
   }
 
   void DynamicArray::Clear() {
-    // Write your code here ...
+    size_ = 0;
   }
 
   std::optional<int> DynamicArray::Get(int index) const {
