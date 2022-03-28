@@ -1,5 +1,6 @@
 #include "assignment/linked_list.hpp"
 
+class Asap;
 namespace assignment {
 
   LinkedList::~LinkedList() {
@@ -60,22 +61,76 @@ namespace assignment {
   }
 
   bool LinkedList::Set(int index, int new_value) {
-    
+    if (index >= 0 && index < size_)
+    {
+      Node* current = front_;
+      for (int i = 0; i < size_; i++)
+      {
+        if (i == index)
+        {
+          current->value = new_value;
+          return true;
+        }
+        current = current->next;
+      }
+    }
     return false;
   }
 
   std::optional<int> LinkedList::Remove(int index) {
-    // Write your code here ...
+    if (index == 0)
+    {
+      int val = front_->value;
+      front_ = front_->next;
+      size_ -= 1;
+      return val;
+    }
+    else if (index > 0 && index < size_)
+    {
+      Node* current = front_;
+      for (int i = 1; i < size_; i++)
+      {
+        if (i == index)
+        {
+          int val = current->value;
+          current = current->next;
+          size_ -= 1;
+          return val;
+        }
+        current = current->next;
+      }
+    }
     return std::nullopt;
   }
 
   void LinkedList::Clear() {
-    // Write your code here ...
+    Node* current = front_;
+    Node* del = front_;
+    for (int i = 0;i < size_; i++)
+    {
+      del = current;
+      current = current->next;
+      delete del;
+    }
+    size_ = 0;
+    front_ = nullptr;
+    back_ = nullptr;
   }
 
   std::optional<int> LinkedList::Get(int index) const {
-    // Write your code here ...
-    return std::nullopt;
+    Node* current = front_;
+    if (index >= 0 && index < size_)
+    {
+      for (int i = 0; i < size_; i++)
+      {
+        if (index == i)
+        {
+          return current->value;
+        }
+        current = current->next;
+      }
+      return std::nullopt;
+    }
   }
 
   std::optional<int> LinkedList::IndexOf(int value) const {
@@ -84,24 +139,35 @@ namespace assignment {
   }
 
   bool LinkedList::Contains(int value) const {
+
     return false;
   }
 
   bool LinkedList::IsEmpty() const {
+    if (front_ == nullptr)
+    {
+      return true;
+    }
     return false;
   }
 
   int LinkedList::size() const {
-    return 0;
+    return size_;
   }
 
   std::optional<int> LinkedList::front() const {
-    // Write your code here ...
+    if (front_ != nullptr)
+    {
+      return front_->value;
+    }
     return std::nullopt;
   }
 
   std::optional<int> LinkedList::back() const {
-    // Write your code here ...
+    if (back_ != nullptr)
+    {
+      return back_ -> value;
+    }
     return std::nullopt;
   }
 
@@ -161,5 +227,4 @@ namespace assignment {
 
     return array;
   }
-
-}  // namespace assignment
+  }  // namespace assignment
