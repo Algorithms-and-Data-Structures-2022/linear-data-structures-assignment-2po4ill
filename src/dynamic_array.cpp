@@ -82,7 +82,21 @@ namespace assignment {
   }
 
   std::optional<int> DynamicArray::Remove(int index) {
-
+    int size1 = size_;
+    int val;
+    for (int i = index; i < size_; i++)
+    {
+      if (i = index)
+      {
+        val = data_[i];
+        size_ -= 1;
+      }
+      data_[i] = data_[i+1];
+    }
+    if (size1 != size_)
+    {
+      return val;
+    }
     return std::nullopt;
   }
 
