@@ -11,12 +11,19 @@ namespace assignment {
     if (capacity <= 0) {
       throw std::invalid_argument("capacity is not positive");
     }
-
-    // Write your code here ...
+    capacity_ = capacity;
+    data_ = new int[capacity_];
+    for (int i = 0; i < capacity_; i++)
+    {
+      data_[i] = 0;
+    }
   }
 
   ArrayStack::~ArrayStack() {
-    // Write your code here ...
+    size_ = 0;
+    capacity_ = 0;
+    delete data_;
+    data_ = nullptr;
   }
 
   void ArrayStack::Push(int value) {
@@ -53,7 +60,21 @@ namespace assignment {
   }
 
   bool ArrayStack::Resize(int new_capacity) {
-    // Write your code here ...
+    if (new_capacity > capacity_)
+    {
+      int* arr = new int[new_capacity];
+      for (int i = 0; i < capacity_; i++) {
+        arr[i] = data_[i];
+      }
+      for (int j = capacity_; j < new_capacity; j++) {
+        arr[j] = 0;
+      }
+      int* data_ = new int[new_capacity];
+      for (int x = 0; x < new_capacity; x++) {
+        data_[x] = arr[x];
+      }
+      return true;
+    }
     return false;
   }
 
