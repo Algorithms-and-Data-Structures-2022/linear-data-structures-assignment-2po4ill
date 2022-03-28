@@ -25,11 +25,42 @@ namespace assignment {
   }
 
   bool LinkedList::Insert(int index, int value) {
-    // Write your code here ...
+    Node* addNode = new Node(value);
+    if (index == 0)
+    {
+      addNode->next = front_;
+      front_ = addNode;
+      size_ += 1;
+      return true;
+    }
+    else if (index == size_)
+    {
+      back_->next = addNode;
+      back_ = addNode;
+      size_ += 1;
+      return true;
+    }
+    else if (index >= 0 && index < size_)
+    {
+      Node* previous = front_;
+      for (int i = 1; i < size_;i++)
+      {
+        if ( i == index - 1)
+        {
+          break;
+        }
+        previous = previous->next;
+      }
+      addNode->next = previous->next;
+      previous->next = addNode;
+      size_ += 1;
+      return true;
+    }
     return false;
   }
 
   bool LinkedList::Set(int index, int new_value) {
+    
     return false;
   }
 
@@ -75,7 +106,18 @@ namespace assignment {
   }
 
   Node* LinkedList::FindNode(int index) const {
-    // Write your code here ...
+    if (index > 0 && index < size_)
+    {
+      Node* current = front_;
+      for (int i=1; i<size_;i++)
+      {
+        if (i==index)
+        {
+          return current;
+        }
+        current = current->next;
+      }
+    }
     return nullptr;
   }
 
