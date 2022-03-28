@@ -11,16 +11,28 @@ namespace assignment {
     if (capacity <= 0) {
       throw std::invalid_argument("capacity is not positive");
     }
-
-    // Write your code here ...
+    capacity_ = capacity;
+    data_ = new int[capacity_];
+    for (int i = 0; i < capacity_; i++) {
+      data_[i] = 0;
+    }
   }
 
   DynamicArray::~DynamicArray() {
-    // Write your code here ...
+    size_ = 0;
+    capacity_ = 0;
+    delete data_;
+    data_ = nullptr;
   }
 
+
   void DynamicArray::Add(int value) {
-    // Write your code here ...
+    size_++;
+    if (size_ > capacity_)
+    {
+
+    }
+    data_[size_ - 1] = value;
   }
 
   bool DynamicArray::Insert(int index, int value) {
@@ -43,33 +55,68 @@ namespace assignment {
   }
 
   std::optional<int> DynamicArray::Get(int index) const {
-    // Write your code here ...
+    for (int i = 0; i < size_; i++)
+    {
+      if (i == index) {
+        return data_[i];
+      }
+    }
     return std::nullopt;
   }
 
   std::optional<int> DynamicArray::IndexOf(int value) const {
-    // Write your code here ...
+    for (int i = 0; i < size_; i++)
+    {
+      if (data_[i] == value) {
+        return i;
+      }
+    }
     return std::nullopt;
   }
 
   bool DynamicArray::Contains(int value) const {
+    for (int i = 0; i < size_; i++)
+    {
+      if (data_[i] == value) {
+        return true;
+      }
+    }
     return false;
   }
 
   bool DynamicArray::IsEmpty() const {
+    if (size_ == 0)
+    {
+      return true;
+    }
     return false;
   }
 
   int DynamicArray::size() const {
-    return 0;
+    return size_;
   }
 
   int DynamicArray::capacity() const {
-    return 0;
+    return capacity_;
   }
 
   bool DynamicArray::Resize(int new_capacity) {
-    // Write your code here ...
+    if (new_capacity > capacity_)
+    {
+      int* arr = new int[new_capacity];
+      for (int i = 0; i < capacity_; i++) {
+        arr[i] = data_[i];
+      }
+      for (int j = capacity_; j < new_capacity; j++) {
+        arr[j] = 0;
+      }
+      int* data_ = new int[new_capacity];
+      for (int x = 0; x < new_capacity; x++) {
+        data_[x] = arr[x];
+      }
+      return true;
+    }
+
     return false;
   }
 
