@@ -59,11 +59,7 @@ namespace assignment {
           arr[i] = data_[i];
         }
       }
-      int* data_ = new int[capacity_];
-      for (int i = 0; i < size_; i++)
-      {
-        data_[i] = arr[i];
-      }
+      int* data_ = arr;
       return true;
     }
     return false;
@@ -164,7 +160,6 @@ namespace assignment {
       capacity_ = new_capacity;
       return true;
     }
-
     return false;
   }
 

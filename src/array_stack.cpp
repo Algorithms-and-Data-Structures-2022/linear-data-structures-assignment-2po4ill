@@ -45,34 +45,33 @@ namespace assignment {
   }
 
   bool ArrayStack::IsEmpty() const {
-    // Write your code here ...
+    if (size_ == 0)
+    {
+      return true;
+    }
     return false;
   }
 
   int ArrayStack::size() const {
-    // Write your code here ...
-    return 0;
+    return size_;
   }
 
   int ArrayStack::capacity() const {
-    // Write your code here ...
-    return 0;
+    return capacity_;
   }
 
   bool ArrayStack::Resize(int new_capacity) {
     if (new_capacity > capacity_)
     {
       int* arr = new int[new_capacity];
-      for (int i = 0; i < capacity_; i++) {
+      for (int i = 0; i < size_; i++) {
         arr[i] = data_[i];
       }
-      for (int j = capacity_; j < new_capacity; j++) {
+      for (int j = size_; j < new_capacity; j++) {
         arr[j] = 0;
       }
-      int* data_ = new int[new_capacity];
-      for (int x = 0; x < new_capacity; x++) {
-        data_[x] = arr[x];
-      }
+      int* data_ = arr;
+      capacity_ = new_capacity;
       return true;
     }
     return false;
