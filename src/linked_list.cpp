@@ -91,8 +91,9 @@ namespace assignment {
       {
         if (i == index)
         {
+          Node* del = current;
           int val = current->value;
-          current = current->next;
+          current = del->next;
           size_ -= 1;
           return val;
         }
