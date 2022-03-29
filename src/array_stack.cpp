@@ -27,11 +27,21 @@ namespace assignment {
   }
 
   void ArrayStack::Push(int value) {
-    // Write your code here ...
+    size_++;
+    if (size_ > capacity_)
+    {
+      Resize(capacity_ + kCapacityGrowthCoefficient);
+    }
+    data_[size_] = value;
   }
 
   bool ArrayStack::Pop() {
-
+    if (size_ != 0)
+    {
+      data_[size_ - 1] = 0;
+      size_ -= 1;
+      return true;
+    }
     return false;
   }
 
