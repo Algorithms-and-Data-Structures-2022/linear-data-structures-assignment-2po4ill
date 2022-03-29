@@ -97,6 +97,10 @@ namespace assignment {
   }
 
   void DynamicArray::Clear() {
+    for (int i = 0; i < size_; i++)
+    {
+      data_[i] = 0;
+    }
     size_ = 0;
   }
 

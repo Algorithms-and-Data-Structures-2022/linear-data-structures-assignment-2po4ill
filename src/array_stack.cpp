@@ -31,16 +31,23 @@ namespace assignment {
   }
 
   bool ArrayStack::Pop() {
-    // Write your code here ...
+
     return false;
   }
 
   void ArrayStack::Clear() {
-    // Write your code here ...
+    for (int i = 0; i < size_; i++)
+    {
+      data_[i] = 0;
+    }
+    size_ = 0;
   }
 
   std::optional<int> ArrayStack::Peek() const {
-    // Write your code here ...
+    if (size_ != 0)
+    {
+      return data_[size_ - 1];
+    }
     return std::nullopt;
   }
 
